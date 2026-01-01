@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Babadesign Services - Final</title>
+<title>Babadesign Services</title>
 
-<!-- Montserrat Font -->
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Orbitron:wght@600;800&display=swap" rel="stylesheet">
 
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
@@ -28,12 +28,12 @@ header{
     text-align:center;
 }
 header h1{
+    font-family:'Orbitron',sans-serif;
     font-size:3em;
     color:#00f6ff;
+    text-shadow:0 0 15px #00f6ff;
 }
-header p{
-    color:#a0f6ff;
-}
+header p{color:#a0f6ff}
 
 main{
     max-width:760px;
@@ -62,8 +62,6 @@ input,select,textarea{
     color:#fff;
 }
 
-textarea{resize:vertical}
-
 .price-box,.info-box{
     margin-top:22px;
     padding:22px;
@@ -85,7 +83,7 @@ textarea{resize:vertical}
 }
 
 .owner-name{
-    font-size:1.25em;
+    font-size:1.3em;
     font-weight:700;
     margin-bottom:12px;
     color:#00f6ff;
@@ -113,30 +111,6 @@ button{
     font-weight:700;
     border-radius:12px;
 }
-
-/* Modal */
-.modal{
-    display:none;
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,.8);
-    justify-content:center;
-    align-items:center;
-    z-index:999;
-}
-.modal-content{
-    background:#111;
-    padding:30px;
-    border-radius:16px;
-    max-width:520px;
-    width:90%;
-    text-align:center;
-    border:2px solid #00f6ff;
-}
-.modal-content button{
-    width:48%;
-    margin:8px 1%;
-}
 </style>
 </head>
 
@@ -144,7 +118,7 @@ button{
 
 <header>
 <h1>Babadesign Services</h1>
-<p>Ranpli fòm lan epi upload prèv depo w.</p>
+<p>Design • Branding • Web</p>
 </header>
 
 <main>
@@ -153,11 +127,11 @@ button{
 <label>Imèl (opsyonèl):</label>
 <input type="email" id="email">
 
-<label>Sèvis ou vle a:</label>
+<label>Sèvis:</label>
 <select id="service" required>
     <option value="" data-price="0">Chwazi yon sèvis</option>
     <option value="Flyers" data-price="3250">Flyers – 3250 HTG</option>
-    <option value="Etiquettet" data-price="6500">Etikèt – 6500 HTG</option>
+    <option value="Etikèt" data-price="6500">Etikèt – 6500 HTG</option>
     <option value="Logo" data-price="13000">Logo – 13000 HTG</option>
     <option value="Website" data-price="104000">Website – 104000 HTG</option>
 </select>
@@ -165,9 +139,17 @@ button{
 <label>Detay pwojè a:</label>
 <textarea id="details" required></textarea>
 
-<label>Style / koulè preferans:</label>
+<label>Style / koulè:</label>
 <input type="text" id="style">
 
+<label>Kòd promo:</label>
+<input type="text" id="promo" placeholder="Babadesign01">
+
+<!-- FOTO OPSYONÈL POU TRAVAY LA -->
+<label>Foto / imaj pou travay la (opsyonèl):</label>
+<input type="file" id="projectImage" accept="image/*">
+
+<!-- FOTO OBLIGATWA -->
 <label>Upload prèv tranzaksyon (OBLIGATWA):</label>
 <input type="file" id="paymentProof" accept="image/*" required>
 
@@ -192,24 +174,31 @@ Demann lan voye ✔️ Nou pral verifye tranzaksyon an.
 
 <script>
 const service=document.getElementById('service');
+const promo=document.getElementById('promo');
 const totalPrice=document.getElementById('totalPrice');
-const form=document.getElementById('designForm');
 const proof=document.getElementById('paymentProof');
 
-service.addEventListener('change',()=>{
-    let price=service.selectedOptions[0].dataset.price;
-    totalPrice.textContent=price+" HTG";
-});
-
-form.addEventListener('submit',e=>{
-    if(!proof.files.length){
-        alert("⚠️ Ou dwe upload foto tranzaksyon an!");
-        e.preventDefault();
-        return;
+function calculatePrice(){
+    let price=parseFloat(service.selectedOptions[0].dataset.price || 0);
+    if(promo.value.trim()==="Babadesign01"){
+        price*=0.9;
     }
-    document.getElementById('confirmationMessage').style.display="block";
+    totalPrice.textContent=Math.round(price)+" HTG";
+}
+
+service.addEventListener('change',calculatePrice);
+promo.addEventListener('input',calculatePrice);
+
+document.getElementById('designForm').addEventListener('submit',e=>{
+    if(!proof.files.length){
+        alert("⚠️ Prèv tranzaksyon an obligatwa!");
+        e.preventDefault();
+    }else{
+        document.getElementById('confirmationMessage').style.display="block";
+    }
 });
 </script>
 
 </body>
 </html>
+
