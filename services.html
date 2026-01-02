@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Babadesign | Studio Créatif</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+:root{
+  --main:#6a5cff;
+  --accent:#00eaff;
+  --pink:#ff4ecd;
+  --bg:#0b0d17;
+  --card:#14172b;
+  --text:#ffffff;
+}
+
+*{box-sizing:border-box;font-family:'Segoe UI',sans-serif;margin:0;padding:0}
+
+body{
+  margin:0;
+  color:var(--text);
+  background:#05060f;
+  scroll-behavior:smooth;
+  overflow-x:hidden;
+}
+
+/* BACKGROUND ANIMÉ */
+.bg{
+  position:fixed;
+  inset:0;
+  background:
+    radial-gradient(circle at 20% 30%,rgba(106,92,255,.25),transparent 40%),
+    radial-gradient(circle at 80% 70%,rgba(0,234,255,.18),transparent 40%),
+    radial-gradient(circle at 50% 90%,rgba(255,78,205,.15),transparent 45%);
+  animation:bgMove 12s infinite alternate;
+  z-index:-1;
+}
+@keyframes bgMove{from{transform:scale(1)}to{transform:scale(1.15)}}
+
+/* INTRO */
+#intro{
+  position:fixed; inset:0;
+  background:linear-gradient(135deg,#05060f,#12163a);
+  display:flex; align-items:center; justify-content:center;
+  z-index:9999;
+  animation:introOut 1s ease forwards;
+  animation-delay:2.2s;
+}
+.intro-text{
+  font-weight:700;
+  letter-spacing:3px;
+  background:linear-gradient(90deg,var(--main),var(--accent),var(--pink));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  animation:fadeUp 1.6s ease;
+  font-size:2.6em;
+}
+@media(max-width:600px){.intro-text{font-size:2em}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes introOut{to{opacity:0;visibility:hidden}}
+
+/* HEADER */
+header{
+  display:flex; justify-content:space-between; align-items:center;
+  padding:20px 28px; position:fixed; width:100%; z-index:999;
+}
+.logo{
+  font-size:1.4em; font-weight:bold;
+  background:linear-gradient(90deg,var(--main),var(--accent));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+/* MENU */
+.menu-btn{width:30px;cursor:pointer}
+.menu-btn span{
+  display:block;height:3px;background:white;
+  margin:6px 0;border-radius:3px;
+}
+.menu{
+  position:fixed; inset:0;
+  background:rgba(5,6,15,.96);
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:center;
+  transform:translateY(-100%);
+  transition:.6s ease; z-index:998;
+}
+.menu a{
+  color:white; font-size:1.5em; text-decoration:none; margin:18px 0;
+}
+.menu.show{transform:translateY(0)}
+.menu a:hover{color:var(--accent)}
+
+/* HERO */
+section{padding:100px 20px}
+.hero{text-align:center;padding-top:140px}
+.hero h1{
+  font-size:2.8em;
+  background:linear-gradient(90deg,var(--main),var(--accent));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.hero p{max-width:700px;margin:auto;opacity:.85;font-size:1.1em}
+.hero-buttons a{
+  display:inline-block;margin:12px;padding:14px 34px;
+  border-radius:30px;font-weight:bold;text-decoration:none;
+  transition:.3s;
+}
+.primary{background:linear-gradient(90deg,var(--main),var(--accent));color:#000}
+.secondary{border:2px solid var(--accent);color:white}
+.hero-buttons a:hover{
+  transform:translateY(-4px);
+  box-shadow:0 0 20px rgba(0,234,255,.4);
+}
+
+/* GRID */
+.grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:25px;padding:50px 20px;
+}
+.card{
+  background:rgba(20,23,43,.85);
+  backdrop-filter:blur(8px);
+  border-radius:18px;
+  padding:25px;
+  transition:.3s;
+}
+.card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 0 30px rgba(106,92,255,.35);
+}
+.card h3{color:var(--accent);margin-top:0}
+.price{color:var(--pink);font-weight:bold;margin-top:10px}
+.btn{
+  display:inline-block;margin-top:12px;padding:12px 28px;
+  border-radius:30px;background:linear-gradient(90deg,var(--main),var(--accent));
+  color:#000;font-weight:bold;text-decoration:none;
+  transition:.3s;
+}
+.btn:hover{transform:translateY(-4px);box-shadow:0 0 25px rgba(0,234,255,.45)}
+
+/* FOOTER */
+footer{text-align:center;padding:40px 20px;opacity:.8;font-size:.9em}
+
+/* TITRES */
+.title{text-align:center;font-size:2em;margin-bottom:40px}
+
+/* FORMULAIRE COMMANDE */
+#commande select, #commande input{width:100%;padding:12px;margin:10px 0;border-radius:10px;background:#14172b;color:white;border:none}
+#commande p{margin:10px 0;font-size:1em}
+#commande button{width:100%;margin-top:10px;font-weight:bold}
+</style>
+</head>
+
+<body>
+<div class="bg"></div>
+
+<!-- INTRO -->
+<div id="intro"><div class="intro-text">BABADESIGN</div></div>
+
+<!-- MENU -->
+<div class="menu" id="menu">
+  <a href="#hero">Accueil</a>
+  <a href="#formations">Formations</a>
+  <a href="#services">Services</a>
+  <a href="#commande">Commande</a>
+  <a href="#contact">Contact</a>
+</div>
+
+<header>
+  <div class="logo">Babadesign</div>
+  <div class="menu-btn" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+</header>
+
+<!-- HERO -->
+<section id="hero" class="hero">
+  <h1>Création • Formation • Innovation</h1>
+  <p>Nous aidons les créateurs et entrepreneurs à développer leur image et leurs compétences digitales.</p>
+  <div class="hero-buttons">
+    <a href="#formations" class="primary">Voir les formations</a>
+    <a href="#services" class="secondary">Services design</a>
+    <a href="#commande" class="btn">Passer une commande</a>
+  </div>
+</section>
+
+<!-- FORMATIONS -->
+<section id="formations">
+  <h2 class="title">Formations disponibles</h2>
+  <div class="grid">
+    <div class="card"><h3>Design Graphique</h3><p>Photoshop, Illustrator, Branding moderne.</p><p class="price">5 000 HTG</p></div>
+    <div class="card"><h3>Web Design</h3><p>HTML, CSS, Sites modernes & responsives.</p><p class="price">6 500 HTG</p></div>
+    <div class="card"><h3>Branding Pro</h3><p>Identité visuelle, Logo, Stratégie.</p><p class="price">4 000 HTG</p></div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <h2 class="title">Nos Services</h2>
+  <div class="grid">
+    <div class="card"><h3>Flyers</h3><p>Créations modernes et attractives.</p><p class="price">3 250 HTG</p></div>
+    <div class="card"><h3>Étiquettes</h3><p>Designs élégants pour vos produits.</p><p class="price">6 500 HTG</p></div>
+    <div class="card"><h3>Logo</h3><p>Identité visuelle professionnelle.</p><p class="price">13 000 HTG</p></div>
+    <div class="card"><h3>Banner</h3><p>Bannières réseaux sociaux impactantes.</p><p class="price">4 550 HTG</p></div>
+    <div class="card"><h3>Certificat</h3><p>Design professionnel pour certificats.</p><p class="price">650 HTG</p></div>
+    <div class="card"><h3>Badge</h3><p>Badges personnalisés pour événements.</p><p class="price">1 040 HTG</p></div>
+    <div class="card"><h3>Website</h3><p>Sites web modernes et responsives.</p><p class="price">104 000 HTG</p></div>
+    <div class="card"><h3>Calendrier</h3><p>Calendriers design personnalisés.</p><p class="price">1 950 HTG</p></div>
+    <div class="card"><h3>Cover Design</h3><p>Design de couverture pour publications.</p><p class="price">3 900 HTG</p></div>
+  </div>
+</section>
+
+<!-- COMMANDE -->
+<section id="commande">
+  <h2 class="title">Passer une commande</h2>
+  <p style="text-align:center">Choisissez un service et payez directement sur le site. Après paiement, vous recevrez un lien pour rejoindre Telegram.</p>
+
+  <div style="max-width:600px;margin:auto;background:rgba(20,23,43,.85);padding:20px;border-radius:15px;">
+    <label for="service">Sélectionnez un service:</label>
+    <select id="service">
+      <option value="3250">Flyers – 3 250 HTG</option>
+      <option value="6500">Étiquettes – 6 500 HTG</option>
+      <option value="13000">Logo – 13 000 HTG</option>
+      <option value="4550">Banner – 4 550 HTG</option>
+      <option value="650">Certificat – 650 HTG</option>
+      <option value="1040">Badge – 1 040 HTG</option>
+      <option value="104000">Website – 104 000 HTG</option>
+      <option value="1950">Calendrier – 1 950 HTG</option>
+      <option value="3900">Cover Design – 3 900 HTG</option>
+    </select>
+
+    <label for="promo">Code Promo (10% de réduction):</label>
+    <input type="text" id="promo" placeholder="Babadesign01">
+
+    <p>Prix final: <span id="prix">3 250 HTG</span></p>
+
+    <button id="payer" class="btn">Payer maintenant</button>
+
+    <div id="telegram" style="display:none;margin-top:15px;text-align:center;">
+      <p>Merci pour votre paiement ! Cliquez ci-dessous pour rejoindre le groupe Telegram :</p>
+      <a href="https://t.me/votre_lien_telegram" target="_blank" class="btn">Rejoindre Telegram</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <h2 class="title">Contact</h2>
+  <p style="text-align:center">WhatsApp: +50940052773</p>
+  <p style="text-align:center">Merci pour votre confiance ! Votre service sera disponible sous 24 à 48h après paiement.</p>
+</section>
+
+<footer>
+  © 2026 Babadesign • Tous droits réservés
+</footer>
+
+<script>
+// INTRO
+setTimeout(()=>{document.body.style.overflow="auto"},2200);
+
+// MENU 3 TI BA
+function toggleMenu(){document.getElementById("menu").classList.toggle("show")}
+document.querySelectorAll('#menu a').forEach(link=>{link.addEventListener('click',()=>{document.getElementById("menu").classList.remove("show")})});
+
+// FORMULAIRE COMMANDE
+const serviceSelect = document.getElementById("service");
+const prixSpan = document.getElementById("prix");
+const promoInput = document.getElementById("promo");
+const payerBtn = document.getElementById("payer");
+const telegramDiv = document.getElementById("telegram");
+
+function updatePrix(){
+  let prix = parseInt(serviceSelect.value);
+  if(promoInput.value.trim()==="Babadesign01") prix = Math.round(prix*0.9);
+  prixSpan.textContent = prix.toLocaleString() + " HTG";
+}
+
+serviceSelect.addEventListener("change",updatePrix);
+promoInput.addEventListener("input",updatePrix);
+
+payerBtn.addEventListener("click",()=>{
+  alert("Paiement simulé réussi !");
+  telegramDiv.style.display="block";
+});
+
+updatePrix();
+</script>
+</body>
+</html>
