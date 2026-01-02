@@ -197,17 +197,7 @@ footer{
 
 <header>
   <div class="logo">Babadesign</div>
-  <div class="menu-btn" function toggleMenu(){
-  document.getElementById("menu").classList.toggle("show");
-}
-
-// Fè chak lyen nan meni a fèmen meni an lè w klike
-document.querySelectorAll('#menu a').forEach(link => {
-  link.addEventListener('click', () => {
-    document.getElementById("menu").classList.remove("show");
-  });
-});
-()">
+  <div class="menu-btn" onclick="toggleMenu()">
     <span></span><span></span><span></span>
   </div>
 </header>
@@ -309,10 +299,18 @@ document.querySelectorAll('#menu a').forEach(link => {
 </footer>
 
 <script>
-setTimeout(()=>{document.body.style.overflow="auto"},2200);
 function toggleMenu(){
   document.getElementById("menu").classList.toggle("show");
 }
+
+// fè chak lyen nan meni a fèmen lè w klike
+document.querySelectorAll('#menu a').forEach(link => {
+  link.addEventListener('click', () => {
+    document.getElementById("menu").classList.remove("show");
+  });
+});
+</script>
+
 </script>
 </body>
 </html>
