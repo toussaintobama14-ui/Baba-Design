@@ -173,7 +173,7 @@ footer{text-align:center;padding:40px 20px;opacity:.8;font-size:.9em}
     <p>Prix sélectionné: <span id="prix">5 000 HTG</span></p>
 
     <label>Nom complet :</label>
-    <input type="text" id="nom" value="Drisme Marie Alberthe">
+    <input type="text" id="nom" value="Nom Complet">
 
     <label>Email :</label>
     <input type="email" id="email" placeholder="Votre email">
@@ -186,9 +186,6 @@ footer{text-align:center;padding:40px 20px;opacity:.8;font-size:.9em}
 
     <label>Preuve de paiement :</label>
     <input type="file" id="preuve" accept="image/*">
-
-    <label>Numéro MonCash/NatCash :</label>
-    <input type="text" id="numPay" placeholder="Ex: 509XXXXXXXX">
 
     <button class="btn" onclick="envoyerCommande()">Envoyer la commande</button>
 
@@ -255,7 +252,6 @@ function envoyerCommande() {
   const type = typeAchat.value;
   const nom = nomInput.value;
   const email = emailInput.value;
-  const adresse = adresseInput.value;
   const infoTravail = infoTravailInput.value;
   const numPay = numPayInput.value;
 
