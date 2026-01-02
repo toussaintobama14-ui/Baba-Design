@@ -1,204 +1,258 @@
 <!DOCTYPE html>
-<html lang="ht">
+<html lang="fr">
 <head>
 <meta charset="UTF-8">
+<title>Babadesign Services | Design Futuriste</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Babadesign Services</title>
-
-<!-- Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Orbitron:wght@600;800&display=swap" rel="stylesheet">
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --main:#7f5cff;
+  --accent:#00f7ff;
+  --bg:#0b0d17;
+  --card:#14172b;
+  --text:#ffffff;
+}
+
+*{
+  box-sizing:border-box;
+  font-family:'Segoe UI',sans-serif;
+}
+
+/* BLOKE SCROLL PANDAN INTRO */
 body{
-    font-family:'Montserrat',sans-serif;
-    background:linear-gradient(270deg,#0d0d0d,#1a1a2e,#0d0d0d);
-    background-size:600% 600%;
-    animation:gradientBG 20s ease infinite;
-    color:#fff;
-}
-@keyframes gradientBG{
-    0%{background-position:0% 50%}
-    50%{background-position:100% 50%}
-    100%{background-position:0% 50%}
+  margin:0;
+  background:linear-gradient(135deg,#0b0d17,#120f2e);
+  color:var(--text);
+  overflow:hidden;
 }
 
-header{
-    padding:60px 20px;
-    text-align:center;
-}
-header h1{
-    font-family:'Orbitron',sans-serif;
-    font-size:3em;
-    color:#00f6ff;
-    text-shadow:0 0 15px #00f6ff;
-}
-header p{color:#a0f6ff}
-
-main{
-    max-width:760px;
-    margin:-40px auto 60px;
-    background:rgba(255,255,255,0.05);
-    backdrop-filter:blur(15px);
-    padding:35px;
-    border-radius:18px;
-    box-shadow:0 0 45px rgba(0,255,255,0.25);
+/* ================= INTRO ROUGE ================= */
+#intro{
+  position:fixed;
+  inset:0;
+  background:radial-gradient(circle,#ff2a2a,#8b0000,#000);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:9999;
+  animation:fadeOut 1s ease forwards;
+  animation-delay:2.3s;
 }
 
-label{
-    display:block;
-    margin-top:18px;
-    font-weight:600;
-    color:#00f6ff;
+#intro h1{
+  font-size:3.8em;
+  letter-spacing:5px;
+  color:white;
+  text-shadow:
+    0 0 10px #ff2a2a,
+    0 0 30px #ff0000,
+    0 0 60px #ff0000;
+  animation:pulse 1.5s infinite;
 }
 
-input,select,textarea{
-    width:100%;
-    padding:14px;
-    margin-top:6px;
-    border-radius:10px;
-    border:none;
-    background:rgba(255,255,255,0.1);
-    color:#fff;
+@keyframes pulse{
+  0%{transform:scale(1);opacity:1}
+  50%{transform:scale(1.1);opacity:.85}
+  100%{transform:scale(1);opacity:1}
 }
 
-.price-box,.info-box{
-    margin-top:22px;
-    padding:22px;
-    border-radius:14px;
-    background:rgba(255,255,255,0.05);
-    border:1px solid #00f6ff;
+@keyframes fadeOut{
+  to{
+    opacity:0;
+    visibility:hidden;
+  }
 }
 
-.price-box span{
-    font-size:1.5em;
-    font-weight:700;
-    color:#fff;
+/* ================= NAVBAR ================= */
+nav{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:20px 40px;
 }
 
-.info-box p{
-    color:#fff;
-    font-weight:600;
-    text-align:center;
+nav h2{
+  background:linear-gradient(90deg,var(--main),var(--accent));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
 }
 
-.owner-name{
-    font-size:1.3em;
-    font-weight:700;
-    margin-bottom:12px;
-    color:#00f6ff;
+nav a{
+  color:white;
+  text-decoration:none;
+  margin-left:20px;
+  font-weight:500;
 }
 
-button{
-    margin-top:30px;
-    padding:16px;
-    width:100%;
-    font-size:1.2em;
-    font-weight:700;
-    border:none;
-    border-radius:12px;
-    cursor:pointer;
-    background:linear-gradient(90deg,#00f6ff,#00c3ff);
-    color:#000;
+/* ================= HERO ================= */
+.hero{
+  text-align:center;
+  padding:110px 20px;
 }
 
-.confirmation{
-    display:none;
-    margin-top:25px;
-    padding:20px;
-    background:rgba(0,255,255,0.15);
-    text-align:center;
-    font-weight:700;
-    border-radius:12px;
+.hero h1{
+  font-size:3em;
+  margin-bottom:20px;
+  background:linear-gradient(90deg,var(--main),var(--accent));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.hero p{
+  max-width:650px;
+  margin:auto;
+  font-size:1.1em;
+  opacity:.85;
+}
+
+.hero-buttons{
+  margin-top:35px;
+}
+
+.hero-buttons a{
+  display:inline-block;
+  padding:14px 32px;
+  margin:10px;
+  border-radius:30px;
+  text-decoration:none;
+  font-weight:bold;
+  color:#000;
+  background:linear-gradient(90deg,var(--main),var(--accent));
+  transition:.3s;
+}
+
+.hero-buttons a.secondary{
+  background:transparent;
+  color:white;
+  border:2px solid var(--accent);
+}
+
+.hero-buttons a:hover{
+  transform:scale(1.07);
+}
+
+/* ================= FEATURES ================= */
+.features{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:25px;
+  padding:60px 40px;
+}
+
+.feature{
+  background:var(--card);
+  padding:30px;
+  border-radius:18px;
+  box-shadow:0 0 30px rgba(127,92,255,.2);
+  transition:.3s;
+}
+
+.feature:hover{
+  transform:translateY(-8px);
+  box-shadow:0 0 45px rgba(0,247,255,.35);
+}
+
+.feature h3{
+  margin-top:0;
+  color:var(--accent);
+}
+
+/* ================= CTA ================= */
+.cta{
+  text-align:center;
+  padding:80px 20px;
+}
+
+.cta h2{
+  font-size:2.2em;
+}
+
+/* ================= FOOTER ================= */
+footer{
+  text-align:center;
+  padding:20px;
+  opacity:.6;
+  font-size:.9em;
 }
 </style>
 </head>
 
 <body>
 
-<header>
-<h1>Babadesign Services</h1>
-<p>Design • Branding • Web</p>
-</header>
-
-<main>
-<form id="designForm">
-
-<label>Imèl (opsyonèl):</label>
-<input type="email" id="email">
-
-<label>Sèvis:</label>
-<select id="service" required>
-    <option value="" data-price="0">Chwazi yon sèvis</option>
-    <option value="Flyers" data-price="3250">Flyers – 3250 HTG</option>
-    <option value="Etiquette" data-price="6500">Etiquette – 6500 HTG</option>
-    <option value="Logo" data-price="13000">Logo – 13000 HTG</option>
-    <option value="Website" data-price="104000">Website – 104000 HTG</option>
-</select>
-
-<label>Detay pwojè a:</label>
-<textarea id="details" required></textarea>
-
-<label>Style / koulè:</label>
-<input type="text" id="style">
-
-<label>Kòd promo:</label>
-<input type="text" id="promo" placeholder="Babadesign01">
-
-<!-- FOTO OPSYONÈL POU TRAVAY LA -->
-<label>Foto / imaj pou travay la (opsyonèl):</label>
-<input type="file" id="projectImage" accept="image/*">
-
-<!-- FOTO OBLIGATWA -->
-<label>Upload prèv tranzaksyon (OBLIGATWA):</label>
-<input type="file" id="paymentProof" accept="image/*" required>
-
-<div class="price-box">
-Pri total: <span id="totalPrice">0 HTG</span>
+<!-- INTRO -->
+<div id="intro">
+  <h1>Babadesign</h1>
 </div>
 
-<div class="info-box">
-    <p class="owner-name">Darisme Marie Alberthe</p>
-    <p>MonCash: +50948284190</p>
-    <p>NatCash: +50940052773</p>
-</div>
+<!-- NAV -->
+<nav>
+  <h2>Babadesign</h2>
+  <div>
+    <a href="index.html">Akey</a>
+    <a href="services.html">Sèvis</a>
+    <a href="portfolio.html">Portfolio</a>
+    <a href="contact.html">Kontak</a>
+  </div>
+</nav>
 
-<button type="submit">Voye Demann</button>
+<!-- HERO -->
+<section class="hero">
+  <h1>Design ki fè biznis ou briye 🚀</h1>
+  <p>
+    Babadesign Services ofri flyers, logo, branding,
+    website ak design futurist — livrezon
+    <b>24–48 èdtan</b>, sekirite total.
+  </p>
 
-<div class="confirmation" id="confirmationMessage">
-Demann lan voye ✔️ Nou pral verifye tranzaksyon an.
-</div>
+  <div class="hero-buttons">
+    <a href="services.html">Gade Sèvis</a>
+    <a href="portfolio.html" class="secondary">Portfolio</a>
+  </div>
+</section>
 
-</form>
-</main>
+<!-- FEATURES -->
+<section class="features">
+  <div class="feature">
+    <h3>🎨 Design Premium</h3>
+    <p>Vizèl modèn ki ogmante kredibilite biznis ou.</p>
+  </div>
+
+  <div class="feature">
+    <h3>⚡ Rapid</h3>
+    <p>Travay delivre ant 24 a 48h selon pwojè a.</p>
+  </div>
+
+  <div class="feature">
+    <h3>🔒 Sekirite</h3>
+    <p>Nou pa estoke done kliyan. Tout rete prive.</p>
+  </div>
+
+  <div class="feature">
+    <h3>💳 Peman Lokal</h3>
+    <p>MonCash & NatCash, vérification pa référence.</p>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <h2>Pare pou kòmanse pwojè ou a?</h2>
+  <p>Klike anba a epi kòmande kounya.</p>
+  <div class="hero-buttons">
+    <a href="services.html">Kòmande Kounya</a>
+  </div>
+</section>
+
+<footer>
+  © 2026 Babadesign Services • Tous droits réservés
+</footer>
 
 <script>
-const service=document.getElementById('service');
-const promo=document.getElementById('promo');
-const totalPrice=document.getElementById('totalPrice');
-const proof=document.getElementById('paymentProof');
-
-function calculatePrice(){
-    let price=parseFloat(service.selectedOptions[0].dataset.price || 0);
-    if(promo.value.trim()==="Babadesign01"){
-        price*=0.9;
-    }
-    totalPrice.textContent=Math.round(price)+" HTG";
-}
-
-service.addEventListener('change',calculatePrice);
-promo.addEventListener('input',calculatePrice);
-
-document.getElementById('designForm').addEventListener('submit',e=>{
-    if(!proof.files.length){
-        alert("⚠️ Prèv tranzaksyon an obligatwa!");
-        e.preventDefault();
-    }else{
-        document.getElementById('confirmationMessage').style.display="block";
-    }
-});
+/* RETIRE BLOKAJ SCROLL APRÈ INTRO */
+setTimeout(()=>{
+  document.body.style.overflow="auto";
+},2300);
 </script>
 
 </body>
 </html>
-
