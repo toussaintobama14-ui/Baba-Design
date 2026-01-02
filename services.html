@@ -176,7 +176,7 @@ footer{text-align:center;padding:40px 20px;opacity:.8;font-size:.9em}
     <p>Prix sélectionné: <span id="prix">5 000 HTG</span></p>
 
     <label>Nom complet :</label>
-    <input type="text" id="nom" value="Nom Complet">
+    <input type="text" id="nom" value="">
 
     <label>Email :</label>
     <input type="email" id="email" placeholder="Votre email">
@@ -190,6 +190,9 @@ footer{text-align:center;padding:40px 20px;opacity:.8;font-size:.9em}
     <label>Preuve de paiement :</label>
     <input type="file" id="preuve" accept="image/*">
 
+     <label>Nom complet :</label>
+    <input type="text" id="nom" value="Drisme Marie Alberthe" readonly>
+    <p>MonCash: <strong>50958284190</strong> / NatCash: <strong>50940052773</strong></p>
     <button class="btn" onclick="envoyerCommande()">Envoyer la commande</button>
 
     <div id="confirmation" style="display:none;margin-top:15px;text-align:center;">
@@ -210,8 +213,12 @@ footer{text-align:center;padding:40px 20px;opacity:.8;font-size:.9em}
 <!-- CONTACT -->
 <section id="contact">
   <h2 class="title">Contactez-nous</h2>
-  <p style="text-align:center">WhatsApp: +50940052773</p>
-  <p style="text-align:center">Email: babadesign01.com</p>
+  <div class="modal">
+    <p>WhatsApp: +50940052773</p>
+    <a href="https://wa.me/50940052773" target="_blank" class="btn" style="background:#25D366;color:white;">Envoyer un message sur WhatsApp</a>
+    <p>Email: babadesign@example.com</p>
+    <a href="mailto:babadesign@example.com" class="btn">Envoyer un email</a>
+  </div>
 </section>
 
 <footer>
