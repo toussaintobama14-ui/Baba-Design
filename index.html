@@ -197,7 +197,17 @@ footer{
 
 <header>
   <div class="logo">Babadesign</div>
-  <div class="menu-btn" onclick="toggleMenu()">
+  <div class="menu-btn" function toggleMenu(){
+  document.getElementById("menu").classList.toggle("show");
+}
+
+// Fè chak lyen nan meni a fèmen meni an lè w klike
+document.querySelectorAll('#menu a').forEach(link => {
+  link.addEventListener('click', () => {
+    document.getElementById("menu").classList.remove("show");
+  });
+});
+()">
     <span></span><span></span><span></span>
   </div>
 </header>
@@ -212,7 +222,8 @@ footer{
   <div class="hero-buttons">
   <a href="services.html" class="primary">Voir les services</a>
   <a href="portfolio.html" class="secondary">Portfolio</a>
-<!-- Bouton nouvel -->
+
+    <!-- Bouton nouvel -->
   <a href="services.html#commande" class="primary-btn">
     Passer une commande
   </a>
