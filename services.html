@@ -234,51 +234,130 @@ function toggleMenu(){document.getElementById("menu").classList.toggle("show")}
 document.querySelectorAll('#menu a').forEach(link=>{link.addEventListener('click',()=>{document.getElementById("menu").classList.remove("show")})});
 
 // COMMANDE
-const serviceSelect = document.getElementById("service");
-const typeAchat = document.getElementById("typeAchat");
-const prixSpan = document.getElementById("prix");
-const nomInput = document.getElementById("nom");
-const emailInput = document.getElementById("email");
-const adresseInput = document.getElementById("adresse");
-const infoTravailInput = document.getElementById("infoTravail");
-const preuveInput = document.getElementById("preuve");
-const numPayInput = document.getElementById("numPay");
-const confirmationDiv = document.getElementById("confirmation");
-const confirmationMsg = document.getElementById("confirmationMsg");
-const actionBtn = document.getElementById("actionBtn");
+   </style>
+</head>
+<body>
 
-serviceSelect.addEventListener("change", () => {
-  prixSpan.textContent = serviceSelect.value.split(" – ")[1];
-});
+<header>
+    <h1>Babadesign Services</h1>
+    <p>Chwazi sèvis ou vle, ranpli enfòmasyon epi fè depo w.</p>
+</header>
 
-function envoyerCommande() {
-  // Validation obligatoire
-  if(!nomInput.value || !emailInput.value || !adresseInput.value || !infoTravailInput.value || preuveInput.files.length === 0 || !numPayInput.value){
-    alert("Veuillez remplir tous les champs et télécharger la preuve de paiement.");
-    return;
-  }
+<main>
+    <form id="designForm">
+        <label>Non ou:</label>
+        <input type="text" id="name" placeholder="Antre non ou" required>
 
-  const service = serviceSelect.value;
-  const type = typeAchat.value;
-  const nom = nomInput.value;
-  const email = emailInput.value;
-  const infoTravail = infoTravailInput.value;
-  const numPay = numPayInput.value;
+        <label>Imèl (opsyonèl):</label>
+        <input type="text" id="email" placeholder="Antre imèl ou">
 
-  if(type === "formation") {
-    confirmationMsg.textContent = "✅ Paiement reçu ! Cliquez ci-dessous pour rejoindre le groupe Telegram.";
-    actionBtn.textContent = "Rejoindre Telegram";
-    actionBtn.href = "https://t.me/votre_lien_telegram";
-  } else {
-    const message = encodeURIComponent(
-      `Bonjour Babadesign,\n\nNouvo peman pou sèvis:\n${service}\nNom: ${nom}\nEmail: ${email}\nAdresse: ${adresse}\nInfo Travail: ${infoTravail}\nNuméro MonCash/NatCash: ${numPay}\nPreuve de paiement: image téléchargée par le client.`
-    );
-    confirmationMsg.textContent = "✅ Formulaire rempli ! Cliquez ci-dessous pour envoyer vos informations sur WhatsApp.";
-    actionBtn.textContent = "Envoyer sur WhatsApp";
-    actionBtn.href = "https://wa.me/50940052773?text=" + message;
-  }
+        <label>Sèvis ou vle pran:</label>
+        <select id="service" required>
+            <option value="">Chwazi yon sèvis</option>
+            <option value="Flyers" data-price="3250">Flyers – 3250 HTG</option>
+            <option value="Etikèt" data-price="6500">Etikèt – 6500 HTG</option>
+            <option value="Logo" data-price="13000">Logo – 13000 HTG</option>
+            <option value="Banner" data-price="4550">Banner – 4550 HTG</option>
+            <option value="Certificat" data-price="650">Certificat – 650 HTG</option>
+            <option value="Badge" data-price="1040">Badge – 1040 HTG</option>
+            <option value="Website" data-price="104000">Website – 104000 HTG</option>
+            <option value="Calendrier" data-price="1950">Calendrier – 1950 HTG</option>
+            <option value="Cover Design" data-price="3900">Cover Design – 3900 HTG</option>
+  </select>
 
-  confirmationDiv.style.display = "block";
+        <label>Kontni oswa tèks pou pwojè a:</label>
+        <textarea id="details" rows="4" placeholder="Antre detay pwojè a" required></textarea>
+
+        <label>Koulè oswa style preferans:</label>
+        <input type="text" id="style" placeholder="Koulè oswa style">
+
+        <label>Kòd promo (si genyen):</label>
+        <input type="text" id="promo" placeholder="Babadesign01">
+
+        <div class="price-box">
+            Pri total: <span id="totalPrice">0 HTG</span>
+        </div>
+
+        <div class="info-box">
+            <p>Nimewo pou fè depo:</p>
+            <p>MonCash: +50948284190</p>
+            <p>NatCash: +50940052773</p>
+            <p>Upload foto tranzaksyon sou WhatsApp: +50940052773</p>
+        </div>
+
+        <button type="submit">Soumèt Demann</button>
+
+        <div class="confirmation" id="confirmationMessage">
+            Mèsi pou konfyans ou! Depo a nou resevwa li, travay la ap disponib nan 24–48h.
+        </div>
+    </form>
+</main>
+
+<!-- Modal pou konfime -->
+<div class="modal" id="confirmModal">
+    <div class="modal-content">
+        <h2>Konfimasyon Demann</h2>
+        <p id="modalMessage"></p>
+        <button id="confirmBtn">Voye sou WhatsApp</button>
+        <button id="cancelBtn">Anile</button>
+    </div>
+</div>
+
+<script>
+    const serviceSelect = document.getElementById('service');
+    const promoInput = document.getElementById('promo');
+    const totalPrice = document.getElementById('totalPrice');
+    const form = document.getElementById('designForm');
+    const confirmation = document.getElementById('confirmationMessage');
+    const modal = document.getElementById('confirmModal');
+    const modalMessage = document.getElementById('modalMessage');
+    const confirmBtn = document.getElementById('confirmBtn');
+    const cancelBtn = document.getElementById('cancelBtn');
+
+    function calculatePrice(){
+        let price = parseFloat(serviceSelect.selectedOptions[0]?.dataset.price || 0);
+        let promo = promoInput.value.trim();
+        if(promo === "Babadesign01"){ price *= 0.9; }
+        totalPrice.textContent = price.toFixed(0) + " HTG";
+      return price.toFixed(0);
+    }
+
+    serviceSelect.addEventListener('change', calculatePrice);
+    promoInput.addEventListener('input', calculatePrice);
+
+    form.addEventListener('submit', function(e){
+        e.preventDefault();
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const service = serviceSelect.value;
+        const details = document.getElementById('details').value;
+        const style = document.getElementById('style').value;
+        const promo = promoInput.value.trim();
+        const price = calculatePrice();
+
+        let messageText = Nouvo demann Babadesign:\nNon: ${name}\n;
+        if(email) messageText += Imèl: ${email}\n;
+        messageText += Sèvis: ${service}\nKontni: ${details}\nStyle/Koulè: ${style}\n;
+        messageText += Kòd promo: ${promo}\nPri total: ${price} HTG\nTanpri voye foto tranzaksyon sou WhatsApp +50940052773;
+
+        modalMessage.textContent = messageText;
+        modal.style.display = 'flex';
+
+        confirmBtn.onclick = () => {
+            const whatsappNumber = "+50940052773";
+            const url = https://wa.me/${whatsappNumber}?text=${encodeURIComponent(messageText)};
+            window.open(url,'_blank');
+            modal.style.display = 'none';
+            confirmation.style.display = 'block';
+   form.reset();
+            totalPrice.textContent = "0 HTG";
+        };
+        cancelBtn.onclick = () => { modal.style.display = 'none'; };
+    });
+
+    window.onclick = function(event){
+        if(event.target === modal){ modal.style.display = "none"; }
+
 }
 </script>
 </body>
