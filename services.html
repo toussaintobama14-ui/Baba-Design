@@ -144,7 +144,7 @@ footer{text-align:center;padding:40px 20px;opacity:.8;font-size:.9em}
 <!-- COMMANDE -->
 <section id="commande">
   <h2 class="title">Passer une commande</h2>
-  <p style="text-align:center">Remplissez toutes les informations et téléchargez votre preuve de paiement.</p>
+  <p style="text-align:center">Remplissez toutes les informations et téléchargez votre preuve de paiement MonCash/NatCash.</p>
 
   <div style="max-width:600px;margin:auto;background:rgba(20,23,43,.85);padding:20px;border-radius:15px;">
     
@@ -173,7 +173,7 @@ footer{text-align:center;padding:40px 20px;opacity:.8;font-size:.9em}
     <p>Prix sélectionné: <span id="prix">5 000 HTG</span></p>
 
     <label>Nom complet :</label>
-    <input type="text" id="nom" placeholder="Votre nom complet">
+    <input type="text" id="nom" value="Drisme Marie Alberthe">
 
     <label>Email :</label>
     <input type="email" id="email" placeholder="Votre email">
@@ -187,11 +187,21 @@ footer{text-align:center;padding:40px 20px;opacity:.8;font-size:.9em}
     <label>Preuve de paiement :</label>
     <input type="file" id="preuve" accept="image/*">
 
+    <label>Numéro MonCash/NatCash :</label>
+    <input type="text" id="numPay" placeholder="Ex: 509XXXXXXXX">
+
     <button class="btn" onclick="envoyerCommande()">Envoyer la commande</button>
 
     <div id="confirmation" style="display:none;margin-top:15px;text-align:center;">
       <p style="color:#00eaff" id="confirmationMsg"></p>
       <a id="actionBtn" class="btn" target="_blank"></a>
+    </div>
+
+    <!-- BOUTON WHATSAPP DIRÈK -->
+    <div style="text-align:center;margin-top:20px;">
+      <a href="https://wa.me/50940052773" target="_blank" class="btn" style="background:#25D366;color:white;">
+        💬 Envoyer un message sur WhatsApp
+      </a>
     </div>
 
   </div>
@@ -201,7 +211,7 @@ footer{text-align:center;padding:40px 20px;opacity:.8;font-size:.9em}
 <section id="contact">
   <h2 class="title">Contactez-nous</h2>
   <p style="text-align:center">WhatsApp: +50940052773</p>
-  <p style="text-align:center">Email: babadesign@example.com</p>
+  <p style="text-align:center">Email: babadesign01.com</p>
 </section>
 
 <footer>
@@ -225,6 +235,7 @@ const emailInput = document.getElementById("email");
 const adresseInput = document.getElementById("adresse");
 const infoTravailInput = document.getElementById("infoTravail");
 const preuveInput = document.getElementById("preuve");
+const numPayInput = document.getElementById("numPay");
 const confirmationDiv = document.getElementById("confirmation");
 const confirmationMsg = document.getElementById("confirmationMsg");
 const actionBtn = document.getElementById("actionBtn");
@@ -235,7 +246,7 @@ serviceSelect.addEventListener("change", () => {
 
 function envoyerCommande() {
   // Validation obligatoire
-  if(!nomInput.value || !emailInput.value || !adresseInput.value || !infoTravailInput.value || preuveInput.files.length === 0){
+  if(!nomInput.value || !emailInput.value || !adresseInput.value || !infoTravailInput.value || preuveInput.files.length === 0 || !numPayInput.value){
     alert("Veuillez remplir tous les champs et télécharger la preuve de paiement.");
     return;
   }
@@ -246,6 +257,7 @@ function envoyerCommande() {
   const email = emailInput.value;
   const adresse = adresseInput.value;
   const infoTravail = infoTravailInput.value;
+  const numPay = numPayInput.value;
 
   if(type === "formation") {
     confirmationMsg.textContent = "✅ Paiement reçu ! Cliquez ci-dessous pour rejoindre le groupe Telegram.";
@@ -253,7 +265,7 @@ function envoyerCommande() {
     actionBtn.href = "https://t.me/votre_lien_telegram";
   } else {
     const message = encodeURIComponent(
-      `Bonjour Babadesign,\n\nNouvo peman pou sèvis:\n${service}\nNom: ${nom}\nEmail: ${email}\nAdresse: ${adresse}\nInfo Travail: ${infoTravail}\nPreuve de paiement: image téléchargée par le client.`
+      `Bonjour Babadesign,\n\nNouvo peman pou sèvis:\n${service}\nNom: ${nom}\nEmail: ${email}\nAdresse: ${adresse}\nInfo Travail: ${infoTravail}\nNuméro MonCash/NatCash: ${numPay}\nPreuve de paiement: image téléchargée par le client.`
     );
     confirmationMsg.textContent = "✅ Formulaire rempli ! Cliquez ci-dessous pour envoyer vos informations sur WhatsApp.";
     actionBtn.textContent = "Envoyer sur WhatsApp";
@@ -265,3 +277,4 @@ function envoyerCommande() {
 </script>
 </body>
 </html>
+
