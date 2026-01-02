@@ -2,14 +2,16 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<title>Babadesign | Design Futuriste</title>
+<title>Babadesign | Studio Créatif & Formations</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
 :root{
   --main:#6a5cff;
   --accent:#00eaff;
+  --pink:#ff4ecd;
   --bg:#0b0d17;
+  --card:#14172b;
   --text:#ffffff;
 }
 
@@ -17,195 +19,181 @@
 
 body{
   margin:0;
-  background:linear-gradient(135deg,#0b0d17,#120f2e);
   color:var(--text);
+  background:#05060f;
   overflow:hidden;
 }
 
-/* ================= INTRO FUTURIST AVANCÉ ================= */
-#intro{
+/* BACKGROUND */
+.bg{
   position:fixed;
   inset:0;
   background:
-    radial-gradient(circle at 20% 20%,#1b1f55,transparent 40%),
-    radial-gradient(circle at 80% 80%,#0ff,transparent 35%),
-    #05060f;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  z-index:9999;
-  animation:introOut 1.2s ease forwards;
-  animation-delay:3s;
+    radial-gradient(circle at 20% 30%,rgba(106,92,255,.25),transparent 40%),
+    radial-gradient(circle at 80% 70%,rgba(0,234,255,.18),transparent 40%),
+    radial-gradient(circle at 50% 90%,rgba(255,78,205,.15),transparent 45%);
+  animation:bgMove 12s infinite alternate;
+  z-index:-1;
 }
+@keyframes bgMove{from{transform:scale(1)}to{transform:scale(1.15)}}
 
+/* INTRO */
+#intro{
+  position:fixed; inset:0;
+  background:linear-gradient(135deg,#05060f,#12163a);
+  display:flex; align-items:center; justify-content:center;
+  z-index:9999;
+  animation:introOut 1s ease forwards;
+  animation-delay:2.2s;
+}
 .intro-text{
-  position:relative;
-  font-size:4em;
-  letter-spacing:6px;
   font-weight:700;
-  background:linear-gradient(90deg,var(--main),var(--accent),#ffffff);
+  letter-spacing:3px;
+  background:linear-gradient(90deg,var(--main),var(--accent),var(--pink));
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
-  animation:float 2.5s ease-in-out infinite;
+  animation:fadeUp 1.6s ease;
+  font-size:2.6em;
 }
-
-/* glitch layers */
-.intro-text::before,
-.intro-text::after{
-  content:"BABADESIGN";
-  position:absolute;
-  left:0;
-  top:0;
-  width:100%;
-  overflow:hidden;
+@media(max-width:600px){
+  .intro-text{font-size:2em}
 }
-
-.intro-text::before{
-  color:#00eaff;
-  animation:glitch1 1.5s infinite;
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(20px)}
+  to{opacity:1;transform:translateY(0)}
 }
+@keyframes introOut{to{opacity:0;visibility:hidden}}
 
-.intro-text::after{
-  color:#ff3cff;
-  animation:glitch2 2s infinite;
-}
-
-@keyframes float{
-  0%{transform:translateY(0)}
-  50%{transform:translateY(-15px)}
-  100%{transform:translateY(0)}
-}
-
-@keyframes glitch1{
-  0%{clip-path:inset(0 0 80% 0)}
-  50%{clip-path:inset(40% 0 20% 0)}
-  100%{clip-path:inset(0 0 80% 0)}
-}
-
-@keyframes glitch2{
-  0%{clip-path:inset(60% 0 10% 0)}
-  50%{clip-path:inset(10% 0 60% 0)}
-  100%{clip-path:inset(60% 0 10% 0)}
-}
-
-@keyframes introOut{
-  to{opacity:0;visibility:hidden}
-}
-
-/* ================= HEADER ================= */
+/* HEADER */
 header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:20px 30px;
+  display:flex; justify-content:space-between;
+  align-items:center; padding:20px 28px;
 }
-
 .logo{
-  font-size:1.6em;
-  font-weight:bold;
+  font-size:1.4em; font-weight:bold;
   background:linear-gradient(90deg,var(--main),var(--accent));
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
 }
 
-/* ================= MENU HAMBURGER ================= */
-.menu-btn{
-  width:32px;
-  cursor:pointer;
-}
-
+/* MENU */
+.menu-btn{width:30px;cursor:pointer}
 .menu-btn span{
-  display:block;
-  height:3px;
-  background:white;
-  margin:6px 0;
-  border-radius:3px;
+  display:block;height:3px;background:white;
+  margin:6px 0;border-radius:3px;
 }
-
-/* ================= MENU OVERLAY ================= */
 .menu{
-  position:fixed;
-  inset:0;
-  background:rgba(5,6,15,.95);
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
+  position:fixed; inset:0;
+  background:rgba(5,6,15,.96);
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:center;
   transform:translateY(-100%);
-  transition:.6s ease;
-  z-index:999;
+  transition:.6s ease; z-index:998;
 }
-
 .menu a{
-  color:white;
-  font-size:1.6em;
-  text-decoration:none;
-  margin:18px 0;
+  color:white; font-size:1.5em;
+  text-decoration:none; margin:18px 0;
 }
-
 .menu.show{transform:translateY(0)}
 
-/* ================= HERO ================= */
+/* HERO */
 .hero{
   text-align:center;
-  padding:110px 20px;
+  padding:120px 20px 80px;
 }
-
 .hero h1{
-  font-size:2.8em;
+  font-size:2.6em;
   background:linear-gradient(90deg,var(--main),var(--accent));
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
 }
-
 .hero p{
-  max-width:650px;
-  margin:20px auto;
-  opacity:.85;
+  max-width:680px; margin:22px auto;
+  font-size:1.1em; opacity:.9;
+}
+.hero-buttons a{
+  display:inline-block; margin:12px;
+  padding:14px 34px; border-radius:30px;
+  font-weight:bold; text-decoration:none;
+  transition:.3s;
+}
+.primary{
+  background:linear-gradient(90deg,var(--main),var(--accent));
+  color:#000;
+}
+.secondary{
+  border:2px solid var(--accent);
+  color:white;
+}
+.hero-buttons a:hover{
+  transform:translateY(-4px);
+  box-shadow:0 0 20px rgba(0,234,255,.4);
 }
 
-.hero a{
+/* SECTIONS */
+section{padding:70px 30px}
+.title{
+  text-align:center;
+  font-size:2em;
+  margin-bottom:40px;
+}
+
+/* CARDS */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+  gap:25px;
+}
+.card{
+  background:rgba(20,23,43,.85);
+  backdrop-filter:blur(8px);
+  border-radius:18px;
+  padding:25px;
+  transition:.3s;
+}
+.card:hover{
+  transform:translateY(-8px);
+  box-shadow:0 0 30px rgba(106,92,255,.35);
+}
+.card h3{color:var(--accent);margin-top:0}
+.price{color:var(--pink);font-weight:bold}
+
+/* BUTTON */
+.btn{
   display:inline-block;
-  margin:10px;
-  padding:14px 34px;
-  border-radius:30px;
+  margin-top:15px;
+  padding:12px 22px;
+  border-radius:25px;
   background:linear-gradient(90deg,var(--main),var(--accent));
   color:#000;
   font-weight:bold;
   text-decoration:none;
 }
 
-.hero a.secondary{
-  background:transparent;
-  color:white;
-  border:2px solid var(--accent);
-}
-
-/* ================= FOOTER ================= */
+/* FOOTER */
 footer{
   text-align:center;
   padding:20px;
   opacity:.6;
+  font-size:.9em;
 }
 </style>
 </head>
 
 <body>
+<div class="bg"></div>
 
-<!-- INTRO -->
 <div id="intro">
   <div class="intro-text">BABADESIGN</div>
 </div>
 
-<!-- MENU -->
 <div class="menu" id="menu">
-  <a href="index.html">Accueil</a>
-  <a href="services.html">Services</a>
-  <a href="portfolio.html">Portfolio</a>
-  <a href="contact.html">Contact</a>
+  <a href="#">Accueil</a>
+  <a href="#formations">Formations</a>
+  <a href="#design">Design graphique</a>
+  <a href="#contact">Contact</a>
 </div>
 
-<!-- HEADER -->
 <header>
   <div class="logo">Babadesign</div>
   <div class="menu-btn" onclick="toggleMenu()">
@@ -213,30 +201,68 @@ footer{
   </div>
 </header>
 
-<!-- HERO -->
 <section class="hero">
-  <h1>Design moderne & futuriste</h1>
+  <h1>Création • Formation • Innovation</h1>
   <p>
-    Créations professionnelles, branding et web design.
-    Livraison rapide sous <b>24 à 48 heures</b>.
+    Nous aidons les créateurs et entrepreneurs à développer
+    leur image et leurs compétences digitales.
   </p>
-  <a href="services.html">Voir les services</a>
-  <a href="portfolio.html" class="secondary">Portfolio</a>
+  <div class="hero-buttons">
+    <a href="#formations" class="primary">Voir les formations</a>
+    <a href="#design" class="secondary">Services design</a>
+  </div>
 </section>
 
-<footer>
-  © 2026 Babadesign • Tous droits réservés
+<!-- FORMATIONS -->
+<section id="formations">
+  <h2 class="title">Formations disponibles</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>Design Graphique</h3>
+      <p>Photoshop, Illustrator, branding moderne.</p>
+      <p class="price">5 000 HTG</p>
+      <a href="https://t.me/VOTRE_GROUPE" class="btn">Payer & rejoindre Telegram</a>
+    </div>
+
+    <div class="card">
+      <h3>Web Design</h3>
+      <p>HTML, CSS, sites modernes & responsives.</p>
+      <p class="price">6 500 HTG</p>
+      <a href="https://t.me/VOTRE_GROUPE" class="btn">Payer & rejoindre Telegram</a>
+    </div>
+
+    <div class="card">
+      <h3>Branding Pro</h3>
+      <p>Identité visuelle, logo, stratégie.</p>
+      <p class="price">4 000 HTG</p>
+      <a href="https://t.me/VOTRE_GROUPE" class="btn">Payer & rejoindre Telegram</a>
+    </div>
+  </div>
+</section>
+
+<!-- DESIGN -->
+<section id="design">
+  <h2 class="title">Services de design graphique</h2>
+  <div class="grid">
+    <div class="card"><h3>Flyers & Affiches</h3></div>
+    <div class="card"><h3>Logo & Branding</h3></div>
+    <div class="card"><h3>Bannières & Réseaux sociaux</h3></div>
+    <div class="card"><h3>Certificats & Badges</h3></div>
+    <div class="card"><h3>Web Design</h3></div>
+    <div class="card"><h3>Cover Design</h3></div>
+  </div>
+</section>
+
+<footer id="contact">
+  © 2026 Babadesign • WhatsApp +50940052773
 </footer>
 
 <script>
-setTimeout(()=>{document.body.style.overflow="auto"},3000);
+setTimeout(()=>{document.body.style.overflow="auto"},2200);
 function toggleMenu(){
   document.getElementById("menu").classList.toggle("show");
 }
 </script>
-
 </body>
 </html>
-
-
 
