@@ -2,13 +2,13 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<title>Babadesign Services | Design Futuriste</title>
+<title>Babadesign Services | Design Moderne</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
 :root{
-  --main:#7f5cff;
-  --accent:#00f7ff;
+  --main:#6a5cff;
+  --accent:#00eaff;
   --bg:#0b0d17;
   --card:#14172b;
   --text:#ffffff;
@@ -19,70 +19,102 @@
   font-family:'Segoe UI',sans-serif;
 }
 
-/* BLOKE SCROLL PANDAN INTRO */
 body{
   margin:0;
-  background:linear-gradient(135deg,#0b0d17,#120f2e);
+  background:linear-gradient(135deg,#0b0d17,#130f2e);
   color:var(--text);
   overflow:hidden;
 }
 
-/* ================= INTRO ROUGE ================= */
+/* ================= INTRO FUTURIST ELEGANT ================= */
 #intro{
   position:fixed;
   inset:0;
-  background:radial-gradient(circle,#ff2a2a,#8b0000,#000);
+  background:linear-gradient(135deg,#0b0d17,#1a1f4a,#0b0d17);
   display:flex;
   align-items:center;
   justify-content:center;
   z-index:9999;
-  animation:fadeOut 1s ease forwards;
-  animation-delay:2.3s;
+  animation:introFade 1.2s ease forwards;
+  animation-delay:2.5s;
 }
 
 #intro h1{
-  font-size:3.8em;
-  letter-spacing:5px;
-  color:white;
-  text-shadow:
-    0 0 10px #ff2a2a,
-    0 0 30px #ff0000,
-    0 0 60px #ff0000;
-  animation:pulse 1.5s infinite;
+  font-size:3.2em;
+  font-weight:600;
+  letter-spacing:3px;
+  background:linear-gradient(90deg,var(--main),var(--accent));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  animation:floatText 2s ease-in-out infinite;
 }
 
-@keyframes pulse{
-  0%{transform:scale(1);opacity:1}
-  50%{transform:scale(1.1);opacity:.85}
-  100%{transform:scale(1);opacity:1}
+@keyframes floatText{
+  0%{transform:translateY(0)}
+  50%{transform:translateY(-10px)}
+  100%{transform:translateY(0)}
 }
 
-@keyframes fadeOut{
+@keyframes introFade{
   to{
     opacity:0;
     visibility:hidden;
   }
 }
 
-/* ================= NAVBAR ================= */
-nav{
+/* ================= HEADER ================= */
+header{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  padding:20px 40px;
+  padding:20px 30px;
 }
 
-nav h2{
+.logo{
+  font-size:1.6em;
+  font-weight:bold;
   background:linear-gradient(90deg,var(--main),var(--accent));
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
 }
 
-nav a{
+/* ================= HAMBURGER ================= */
+.menu-btn{
+  width:30px;
+  cursor:pointer;
+}
+
+.menu-btn span{
+  display:block;
+  height:3px;
+  background:white;
+  margin:6px 0;
+  border-radius:3px;
+}
+
+/* ================= MENU OVERLAY ================= */
+.menu{
+  position:fixed;
+  inset:0;
+  background:rgba(11,13,23,.95);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  transform:translateY(-100%);
+  transition:.5s;
+  z-index:999;
+}
+
+.menu a{
   color:white;
+  font-size:1.5em;
   text-decoration:none;
-  margin-left:20px;
-  font-weight:500;
+  margin:15px 0;
+}
+
+.menu.show{
+  transform:translateY(0);
 }
 
 /* ================= HERO ================= */
@@ -92,7 +124,7 @@ nav a{
 }
 
 .hero h1{
-  font-size:3em;
+  font-size:2.8em;
   margin-bottom:20px;
   background:linear-gradient(90deg,var(--main),var(--accent));
   -webkit-background-clip:text;
@@ -129,43 +161,7 @@ nav a{
 }
 
 .hero-buttons a:hover{
-  transform:scale(1.07);
-}
-
-/* ================= FEATURES ================= */
-.features{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:25px;
-  padding:60px 40px;
-}
-
-.feature{
-  background:var(--card);
-  padding:30px;
-  border-radius:18px;
-  box-shadow:0 0 30px rgba(127,92,255,.2);
-  transition:.3s;
-}
-
-.feature:hover{
-  transform:translateY(-8px);
-  box-shadow:0 0 45px rgba(0,247,255,.35);
-}
-
-.feature h3{
-  margin-top:0;
-  color:var(--accent);
-}
-
-/* ================= CTA ================= */
-.cta{
-  text-align:center;
-  padding:80px 20px;
-}
-
-.cta h2{
-  font-size:2.2em;
+  transform:scale(1.06);
 }
 
 /* ================= FOOTER ================= */
@@ -185,61 +181,36 @@ footer{
   <h1>Babadesign</h1>
 </div>
 
-<!-- NAV -->
-<nav>
-  <h2>Babadesign</h2>
-  <div>
-    <a href="index.html">Akey</a>
-    <a href="services.html">Sèvis</a>
-    <a href="portfolio.html">Portfolio</a>
-    <a href="contact.html">Kontak</a>
+<!-- MENU OVERLAY -->
+<div class="menu" id="menu">
+  <a href="index.html">Accueil</a>
+  <a href="services.html">Services</a>
+  <a href="portfolio.html">Portfolio</a>
+  <a href="contact.html">Contact</a>
+</div>
+
+<!-- HEADER -->
+<header>
+  <div class="logo">Babadesign</div>
+  <div class="menu-btn" onclick="toggleMenu()">
+    <span></span>
+    <span></span>
+    <span></span>
   </div>
-</nav>
+</header>
 
 <!-- HERO -->
 <section class="hero">
-  <h1>Design ki fè biznis ou briye 🚀</h1>
+  <h1>Design moderne pour votre business</h1>
   <p>
-    Babadesign Services ofri flyers, logo, branding,
-    website ak design futurist — livrezon
-    <b>24–48 èdtan</b>, sekirite total.
+    Babadesign Services vous accompagne avec des créations
+    professionnelles, modernes et sécurisées.
+    Livraison sous <b>24 à 48 heures</b>.
   </p>
 
   <div class="hero-buttons">
-    <a href="services.html">Gade Sèvis</a>
+    <a href="services.html">Voir les services</a>
     <a href="portfolio.html" class="secondary">Portfolio</a>
-  </div>
-</section>
-
-<!-- FEATURES -->
-<section class="features">
-  <div class="feature">
-    <h3>🎨 Design Premium</h3>
-    <p>Vizèl modèn ki ogmante kredibilite biznis ou.</p>
-  </div>
-
-  <div class="feature">
-    <h3>⚡ Rapid</h3>
-    <p>Travay delivre ant 24 a 48h selon pwojè a.</p>
-  </div>
-
-  <div class="feature">
-    <h3>🔒 Sekirite</h3>
-    <p>Nou pa estoke done kliyan. Tout rete prive.</p>
-  </div>
-
-  <div class="feature">
-    <h3>💳 Peman Lokal</h3>
-    <p>MonCash & NatCash, vérification pa référence.</p>
-  </div>
-</section>
-
-<!-- CTA -->
-<section class="cta">
-  <h2>Pare pou kòmanse pwojè ou a?</h2>
-  <p>Klike anba a epi kòmande kounya.</p>
-  <div class="hero-buttons">
-    <a href="services.html">Kòmande Kounya</a>
   </div>
 </section>
 
@@ -248,11 +219,17 @@ footer{
 </footer>
 
 <script>
-/* RETIRE BLOKAJ SCROLL APRÈ INTRO */
+/* INTRO */
 setTimeout(()=>{
   document.body.style.overflow="auto";
-},2300);
+},2500);
+
+/* MENU */
+function toggleMenu(){
+  document.getElementById("menu").classList.toggle("show");
+}
 </script>
 
 </body>
 </html>
+
