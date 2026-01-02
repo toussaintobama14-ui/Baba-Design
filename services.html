@@ -79,7 +79,7 @@ footer{text-align:center;padding:40px 20px;opacity:.8;font-size:.9em}
 .title{text-align:center;font-size:2em;margin-bottom:40px}
 
 /* FORMULAIRE COMMANDE */
-#commande select, #commande input{width:100%;padding:12px;margin:10px 0;border-radius:10px;background:#14172b;color:white;border:none}
+#commande select, #commande input, #commande textarea{width:100%;padding:12px;margin:10px 0;border-radius:10px;background:#14172b;color:white;border:none}
 #commande p{margin:10px 0;font-size:1em}
 #commande button{width:100%;margin-top:10px;font-weight:bold}
 </style>
@@ -144,9 +144,10 @@ footer{text-align:center;padding:40px 20px;opacity:.8;font-size:.9em}
 <!-- COMMANDE -->
 <section id="commande">
   <h2 class="title">Passer une commande</h2>
-  <p style="text-align:center">Choisissez un type d'achat et un service, puis effectuez le paiement MonCash/NatCash. Après paiement, confirmez et nous recevrons vos informations sur WhatsApp ou Telegram.</p>
+  <p style="text-align:center">Remplissez toutes les informations et téléchargez votre preuve de paiement.</p>
 
   <div style="max-width:600px;margin:auto;background:rgba(20,23,43,.85);padding:20px;border-radius:15px;">
+    
     <label for="typeAchat">Type d'achat :</label>
     <select id="typeAchat">
       <option value="formation">Formation</option>
@@ -171,21 +172,28 @@ footer{text-align:center;padding:40px 20px;opacity:.8;font-size:.9em}
 
     <p>Prix sélectionné: <span id="prix">5 000 HTG</span></p>
 
-    <hr style="opacity:.2;margin:15px 0">
+    <label>Nom complet :</label>
+    <input type="text" id="nom" placeholder="Votre nom complet">
 
-    <p><b>Payer via :</b></p>
-    <p>📱 <b>MonCash :</b> +509 40 05 27 73</p>
-    <p>📱 <b>NatCash :</b> +509 40 05 27 73</p>
+    <label>Email :</label>
+    <input type="email" id="email" placeholder="Votre email">
 
-    <label>Code de transaction :</label>
-    <input type="text" id="transaction" placeholder="Ex: MC98374629">
+    <label>Adresse :</label>
+    <input type="text" id="adresse" placeholder="Votre adresse">
 
-    <button class="btn" onclick="confirmerPaiement()">Confirmer le paiement</button>
+    <label>Informations sur le travail :</label>
+    <textarea id="infoTravail" placeholder="Décrivez ce que vous voulez" rows="4" style="width:100%;padding:10px;border-radius:10px;background:#14172b;color:white;border:none;margin-bottom:10px;"></textarea>
+
+    <label>Preuve de paiement :</label>
+    <input type="file" id="preuve" accept="image/*">
+
+    <button class="btn" onclick="envoyerCommande()">Envoyer la commande</button>
 
     <div id="confirmation" style="display:none;margin-top:15px;text-align:center;">
       <p style="color:#00eaff" id="confirmationMsg"></p>
       <a id="actionBtn" class="btn" target="_blank"></a>
     </div>
+
   </div>
 </section>
 
@@ -212,6 +220,11 @@ document.querySelectorAll('#menu a').forEach(link=>{link.addEventListener('click
 const serviceSelect = document.getElementById("service");
 const typeAchat = document.getElementById("typeAchat");
 const prixSpan = document.getElementById("prix");
+const nomInput = document.getElementById("nom");
+const emailInput = document.getElementById("email");
+const adresseInput = document.getElementById("adresse");
+const infoTravailInput = document.getElementById("infoTravail");
+const preuveInput = document.getElementById("preuve");
 const confirmationDiv = document.getElementById("confirmation");
 const confirmationMsg = document.getElementById("confirmationMsg");
 const actionBtn = document.getElementById("actionBtn");
@@ -220,25 +233,29 @@ serviceSelect.addEventListener("change", () => {
   prixSpan.textContent = serviceSelect.value.split(" – ")[1];
 });
 
-function confirmerPaiement() {
-  const transaction = document.getElementById("transaction").value.trim();
-  if(transaction === ""){
-    alert("Veuillez entrer le code de transaction.");
+function envoyerCommande() {
+  // Validation obligatoire
+  if(!nomInput.value || !emailInput.value || !adresseInput.value || !infoTravailInput.value || preuveInput.files.length === 0){
+    alert("Veuillez remplir tous les champs et télécharger la preuve de paiement.");
     return;
   }
 
   const service = serviceSelect.value;
-  const achatType = typeAchat.value;
+  const type = typeAchat.value;
+  const nom = nomInput.value;
+  const email = emailInput.value;
+  const adresse = adresseInput.value;
+  const infoTravail = infoTravailInput.value;
 
-  if(achatType === "formation") {
+  if(type === "formation") {
     confirmationMsg.textContent = "✅ Paiement reçu ! Cliquez ci-dessous pour rejoindre le groupe Telegram.";
     actionBtn.textContent = "Rejoindre Telegram";
     actionBtn.href = "https://t.me/votre_lien_telegram";
   } else {
     const message = encodeURIComponent(
-      `Bonjour Babadesign,\n\nNouvo peman pou sèvis:\n${service}\nKòd tranzaksyon: ${transaction}`
+      `Bonjour Babadesign,\n\nNouvo peman pou sèvis:\n${service}\nNom: ${nom}\nEmail: ${email}\nAdresse: ${adresse}\nInfo Travail: ${infoTravail}\nPreuve de paiement: image téléchargée par le client.`
     );
-    confirmationMsg.textContent = "✅ Paiement reçu ! Cliquez ci-dessous pour envoyer la preuve sur WhatsApp.";
+    confirmationMsg.textContent = "✅ Formulaire rempli ! Cliquez ci-dessous pour envoyer vos informations sur WhatsApp.";
     actionBtn.textContent = "Envoyer sur WhatsApp";
     actionBtn.href = "https://wa.me/50940052773?text=" + message;
   }
