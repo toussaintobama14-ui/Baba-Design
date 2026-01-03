@@ -2,364 +2,171 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<title>Babadesign | Studio Créatif</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Babadesign Services</title>
+
+<!-- Polices -->
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
 <style>
-:root{
-  --main:#6a5cff;
-  --accent:#00eaff;
-  --pink:#ff4ecd;
-  --bg:#0b0d17;
-  --card:#14172b;
-  --text:#ffffff;
-}
-*{box-sizing:border-box;font-family:'Segoe UI',sans-serif;margin:0;padding:0}
-body{margin:0;color:var(--text);background:#05060f;scroll-behavior:smooth;overflow-x:hidden}
-
-/* BACKGROUND ANIMÉ */
-.bg{position:fixed; inset:0;
-  background:radial-gradient(circle at 20% 30%,rgba(106,92,255,.25),transparent 40%),
-           radial-gradient(circle at 80% 70%,rgba(0,234,255,.18),transparent 40%),
-           radial-gradient(circle at 50% 90%,rgba(255,78,205,.15),transparent 45%);
-  animation:bgMove 12s infinite alternate; z-index:-1}
-@keyframes bgMove{from{transform:scale(1)}to{transform:scale(1.15)}}
-
-/* INTRO */
-#intro{position:fixed; inset:0;background:linear-gradient(135deg,#05060f,#12163a);
-display:flex; align-items:center; justify-content:center; z-index:9999;
-animation:introOut 1s ease forwards; animation-delay:2.2s}
-.intro-text{font-weight:700; letter-spacing:3px;
-background:linear-gradient(90deg,var(--main),var(--accent),var(--pink));
--webkit-background-clip:text; -webkit-text-fill-color:transparent;
-animation:fadeUp 1.6s ease; font-size:2.6em}
-@media(max-width:600px){.intro-text{font-size:2em}}
-@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-@keyframes introOut{to{opacity:0;visibility:hidden}}
-
-/* HEADER */
-header{display:flex; justify-content:space-between; align-items:center;
-padding:20px 28px; position:fixed; width:100%; z-index:999}
-.logo{font-size:1.4em; font-weight:bold; background:linear-gradient(90deg,var(--main),var(--accent));
--webkit-background-clip:text; -webkit-text-fill-color:transparent}
-
-/* MENU */
-.menu-btn{width:30px;cursor:pointer}
-.menu-btn span{display:block;height:3px;background:white;margin:6px 0;border-radius:3px}
-.menu{position:fixed; inset:0;background:rgba(5,6,15,.96);display:flex; flex-direction:column;
-align-items:center; justify-content:center; transform:translateY(-100%);transition:.6s ease; z-index:998}
-.menu a{color:white; font-size:1.5em; text-decoration:none; margin:18px 0}
-.menu.show{transform:translateY(0)}
-.menu a:hover{color:var(--accent)}
-
-/* HERO */
-section{padding:100px 20px}
-.hero{text-align:center;padding-top:140px}
-.hero h1{font-size:2.8em;background:linear-gradient(90deg,var(--main),var(--accent));
--webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.hero p{max-width:700px;margin:auto;opacity:.85;font-size:1.1em}
-.hero-buttons a{display:inline-block;margin:12px;padding:14px 34px;border-radius:30px;font-weight:bold;text-decoration:none;transition:.3s}
-.primary{background:linear-gradient(90deg,var(--main),var(--accent));color:#000}
-.secondary{border:2px solid var(--accent);color:white}
-.hero-buttons a:hover{transform:translateY(-4px);box-shadow:0 0 20px rgba(0,234,255,.4)}
-
-/* GRID */
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:25px;padding:50px 20px}
-.card{background:rgba(20,23,43,.85);backdrop-filter:blur(8px);border-radius:18px;padding:25px;transition:.3s}
-.card:hover{transform:translateY(-6px);box-shadow:0 0 30px rgba(106,92,255,.35)}
-.card h3{color:var(--accent);margin-top:0}
-.price{color:var(--pink);font-weight:bold;margin-top:10px}
-.btn{display:inline-block;margin-top:12px;padding:12px 28px;border-radius:30px;background:linear-gradient(90deg,var(--main),var(--accent));
-color:#000;font-weight:bold;text-decoration:none;transition:.3s}
-.btn:hover{transform:translateY(-4px);box-shadow:0 0 25px rgba(0,234,255,.45)}
-
-/* FOOTER */
-footer{text-align:center;padding:40px 20px;opacity:.8;font-size:.9em}
-
-/* TITRES */
-.title{text-align:center;font-size:2em;margin-bottom:40px}
-
-/* FORMULAIRE COMMANDE */
-#commande select, #commande input, #commande textarea{width:100%;padding:12px;margin:10px 0;border-radius:10px;background:#14172b;color:white;border:none}
-#commande p{margin:10px 0;font-size:1em}
-#commande button{width:100%;margin-top:10px;font-weight:bold}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Poppins',sans-serif;background:linear-gradient(160deg,#0f051d,#3a1c71,#1f4fd8);color:#fff;}
+header{display:flex;justify-content:space-between;align-items:center;padding:20px;}
+.logo{font-family:'Orbitron';font-size:22px;}
+nav a{margin:0 10px;color:#ccc;text-decoration:none;cursor:pointer;}
+nav a:hover{color:#00d4ff}
+.btn{background:linear-gradient(45deg,#6f00ff,#00d4ff);padding:10px 20px;border:none;border-radius:25px;color:#fff;cursor:pointer;}
+section{padding:70px 20px;display:none;}
+section.active{display:block}
+h1,h2{font-family:'Orbitron'}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:25px;margin-top:35px;}
+.card{background:rgba(255,255,255,0.12);border-radius:22px;overflow:hidden;backdrop-filter:blur(16px);transition:.3s;text-align:center;}
+.card:hover{transform:translateY(-6px);box-shadow:0 15px 30px rgba(0,0,0,.4);}
+.card img{width:100%;height:200px;object-fit:cover;}
+.card-body{padding:20px;}
+.price{color:#00d4ff;margin:10px 0;}
+input,select{width:100%;padding:12px;margin:10px 0;border-radius:12px;border:none;}
+footer{text-align:center;padding:20px;color:#aaa;}
 </style>
 </head>
+
 <body>
-<div class="bg"></div>
-
-<!-- INTRO -->
-<div id="intro"><div class="intro-text">BABADESIGN</div></div>
-
-<!-- MENU -->
-<div class="menu" id="menu">
-  <a href="#hero">Accueil</a>
-  <a href="#formations">Formations</a>
-  <a href="#services">Services</a>
-  <a href="#commande">Commande</a>
-  <a href="#contact">Contact</a>
-</div>
 
 <header>
-  <div class="logo">Babadesign</div>
-  <div class="menu-btn" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+  <div class="logo">Babadesign Services</div>
+  <nav>
+    <a onclick="show('home')">Accueil</a>
+    <a onclick="show('services')">Services</a>
+    <a onclick="show('formations')">Formations</a>
+    <a onclick="show('contact')">Contact</a>
+  </nav>
+  <button class="btn" onclick="show('commande')">Commander</button>
 </header>
 
-<!-- HERO -->
-<section id="hero" class="hero">
-  <h1>Création • Formation • Innovation</h1>
-  <p>Nous aidons les créateurs et entrepreneurs à développer leur image et leurs compétences digitales.</p>
-  <div class="hero-buttons">
-    <a href="#formations" class="primary">Voir les formations</a>
-    <a href="#services" class="secondary">Services design</a>
-    <a href="#commande" class="btn">Passer une commande</a>
+<!-- ACCUEIL -->
+<section id="home" class="active">
+  <h1>FUTURE<br><span style="color:#00d4ff">DESIGN</span></h1>
+  <p>Design graphique • Web • Formations digitales</p>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <h2>Nos Services</h2>
+  <div class="grid">
+    <div class="card">
+      <img src="https://i.imgur.com/QCNbOAo.png">
+      <div class="card-body">
+        <h3>Logo Professionnel</h3>
+        <p class="price">50 USD</p>
+        <button class="btn" onclick="show('commande')">Commander</button>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://i.imgur.com/ZcLLrkY.png">
+      <div class="card-body">
+        <h3>Création de Site Web</h3>
+        <p class="price">150 USD</p>
+        <button class="btn" onclick="show('commande')">Commander</button>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://i.imgur.com/8Km9tLL.png">
+      <div class="card-body">
+        <h3>Flyer & Affiche</h3>
+        <p class="price">25 USD</p>
+        <button class="btn" onclick="show('commande')">Commander</button>
+      </div>
+    </div>
   </div>
 </section>
 
 <!-- FORMATIONS -->
 <section id="formations">
-  <h2 class="title">Formations disponibles</h2>
+  <h2>Formations Disponibles</h2>
   <div class="grid">
-    <div class="card"><h3>Design Graphique</h3><p>Pixellab, Gestion Couleur, Branding moderne.</p><p class="price">1000 HTG</p></div>
-    <div class="card"><h3>Design Graphique</h3><p>Pixellab, Creation Calendrier, Branding moderne.</p><p class="price">2600 HTG</p></div>
-    <div class="card"><h3>Design Graphique</h3><p>Pixellab, Creation Flyers, Branding moderne.</p><p class="price">10400 HTG</p></div>
-    <div class="card"><h3>Design Graphique</h3><p>Pixellab, Creation Etiquette, Branding moderne.</p><p class="price">9100 HTG</p></div>
-    <div class="card"><h3>Design Graphique</h3><p>Pixellab, Creation Certificat, Branding moderne.</p><p class="price">6500 HTG</p></div>
-    <div class="card"><h3>Design Graphique</h3><p>Pixellab, Creation  Carte visite, Branding moderne.</p><p class="price">6500 HTG</p></div>
-  </div>
-</section>
-
-<!-- SERVICES -->
-<section id="services">
-  <h2 class="title">Nos Services</h2>
-  <div class="grid">
-    <div class="card"><h3>Flyers</h3><p>Créations modernes et attractives.</p><p class="price">3 250 HTG</p></div>
-    <div class="card"><h3>Étiquettes</h3><p>Designs élégants pour vos produits.</p><p class="price">6 500 HTG</p></div>
-    <div class="card"><h3>Logo</h3><p>Identité visuelle professionnelle.</p><p class="price">13 000 HTG</p></div>
-    <div class="card"><h3>Banner</h3><p>Bannières réseaux sociaux impactantes.</p><p class="price">4 550 HTG</p></div>
-    <div class="card"><h3>Certificat</h3><p>Design professionnel pour certificats.</p><p class="price">650 HTG</p></div>
-    <div class="card"><h3>Badge</h3><p>Badges personnalisés pour événements.</p><p class="price">1 040 HTG</p></div>
-    <div class="card"><h3>Website</h3><p>Sites web modernes et responsives.</p><p class="price">104 000 HTG</p></div>
-    <div class="card"><h3>Calendrier</h3><p>Calendriers design personnalisés.</p><p class="price">1 950 HTG</p></div>
-    <div class="card"><h3>Cover Design</h3><p>Design de couverture pour publications.</p><p class="price">3 900 HTG</p></div>
+    <div class="card">
+      <img src="https://i.imgur.com/QCNbOAo.png">
+      <div class="card-body">
+        <h3>Design Graphique</h3>
+        <p class="price">30 USD</p>
+        <button class="btn" onclick="show('commande')">S'inscrire</button>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://i.imgur.com/ZcLLrkY.png">
+      <div class="card-body">
+        <h3>Création de Site Web</h3>
+        <p class="price">50 USD</p>
+        <button class="btn" onclick="show('commande')">S'inscrire</button>
+      </div>
+    </div>
   </div>
 </section>
 
 <!-- COMMANDE -->
 <section id="commande">
-  <h2 class="title">Passer une commande</h2>
-  <p style="text-align:center">Remplissez toutes les informations et téléchargez votre preuve de paiement MonCash/NatCash.</p>
-
-  <div style="max-width:600px;margin:auto;background:rgba(20,23,43,.85);padding:20px;border-radius:15px;">
-    
-    <label for="typeAchat">Type d'achat :</label>
-    <select id="typeAchat">
-      <option value="formation">Formation</option>
-      <option value="service">Service</option>
-    </select>
-
-    <label for="service">Sélectionnez un service :</label>
-    <select id="service">
-      <option value="Design Graphique – 5000 HTG">Design Graphique – 5 000 HTG</option>
-      <option value="Web Design – 6500 HTG">Web Design – 6 500 HTG</option>
-      <option value="Branding Pro – 4000 HTG">Branding Pro – 4 000 HTG</option>
-      <option value="Flyers – 3250 HTG">Flyers – 3 250 HTG</option>
-      <option value="Étiquettes – 6500 HTG">Étiquettes – 6 500 HTG</option>
-      <option value="Logo – 13000 HTG">Logo – 13 000 HTG</option>
-      <option value="Banner – 4550 HTG">Banner – 4 550 HTG</option>
-      <option value="Certificat – 650 HTG">Certificat – 650 HTG</option>
-      <option value="Badge – 1040 HTG">Badge – 1 040 HTG</option>
-      <option value="Website – 104000 HTG">Website – 104 000 HTG</option>
-      <option value="Calendrier – 1950 HTG">Calendrier – 1 950 HTG</option>
-      <option value="Cover Design – 3900 HTG">Cover Design – 3 900 HTG</option>
-    </select>
-
-    <p>Prix sélectionné: <span id="prix">5 000 HTG</span></p>
-
-    <label>Nom complet :</label>
-    <input type="text" id="nom" value="">
-
-    <label>Email :</label>
-    <input type="email" id="email" placeholder="Votre email">
-
-    <label>Adresse :</label>
-    <input type="text" id="adresse" placeholder="Votre adresse">
-
-    <label>Informations sur le travail :</label>
-    <textarea id="infoTravail" placeholder="Décrivez ce que vous voulez" rows="4" style="width:100%;padding:10px;border-radius:10px;background:#14172b;color:white;border:none;margin-bottom:10px;"></textarea>
-
-    <label>Preuve de paiement :</label>
-    <input type="file" id="preuve" accept="image/*">
-
-     <label>Nom complet :</label>
-    <input type="text" id="nom" value="Drisme Marie Alberthe" readonly>
-    <p>MonCash: <strong>50958284190</strong> / NatCash: <strong>50940052773</strong></p>
-    <button class="btn" onclick="envoyerCommande()">Envoyer la commande</button>
-
-    <div id="confirmation" style="display:none;margin-top:15px;text-align:center;">
-      <p style="color:#00eaff" id="confirmationMsg"></p>
-      <a id="actionBtn" class="btn" target="_blank"></a>
+  <h2>Passer une commande</h2>
+  <div class="card">
+    <div class="card-body">
+      <form onsubmit="event.preventDefault(); sendWhatsApp();">
+        <input type="text" id="nom" placeholder="Nom complet" required>
+        <select id="service" required>
+          <option value="">Service ou formation</option>
+          <option>Logo professionnel</option>
+          <option>Site Web</option>
+          <option>Flyer / Affiche</option>
+          <option>Formation Design</option>
+          <option>Formation Web</option>
+        </select>
+        <p>📌 Téléversez la preuve de paiement</p>
+        <input type="file" id="proof" accept="image/*" required>
+        <button class="btn" type="submit">Envoyer sur WhatsApp</button>
+      </form>
     </div>
-
-    <!-- BOUTON WHATSAPP DIRÈK -->
-    <div style="text-align:center;margin-top:20px;">
-      <a href="https://wa.me/50940052773" target="_blank" class="btn" style="background:#25D366;color:white;">
-        💬 Envoyer un message sur WhatsApp
-      </a>
-    </div>
-
   </div>
 </section>
 
 <!-- CONTACT -->
 <section id="contact">
-  <h2 class="title">Contactez-nous</h2>
-  <div class="modal">
-    <p>WhatsApp: +50940052773</p>
-    <a href="https://wa.me/50940052773" target="_blank" class="btn" style="background:#25D366;color:white;">Envoyer un message sur WhatsApp</a>
-    <p>Email: babadesign@example.com</p>
-    <a href="mailto:babadesign@example.com" class="btn">Envoyer un email</a>
-  </div>
+  <h2>Contact</h2>
+  <p>Contactez-nous directement sur WhatsApp</p><br>
+  <a class="btn" href="https://wa.me/509XXXXXXXX" target="_blank">💬 WhatsApp</a>
 </section>
 
-<footer>
-  © 2026 Babadesign • Tous droits réservés
-</footer>
+<footer>© 2026 Babadesign Services</footer>
 
 <script>
-// INTRO
-setTimeout(()=>{document.body.style.overflow="auto"},2200);
+// Navigation entre sections
+function show(id){
+  document.querySelectorAll('section').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
 
-// MENU
-function toggleMenu(){document.getElementById("menu").classList.toggle("show")}
-document.querySelectorAll('#menu a').forEach(link=>{link.addEventListener('click',()=>{document.getElementById("menu").classList.remove("show")})});
+// WhatsApp avec message automatique
+function sendWhatsApp(){
+  const nom = document.getElementById("nom").value;
+  const service = document.getElementById("service").value;
+  const proof = document.getElementById("proof").value;
 
-// COMMANDE
-   </style>
-</head>
-<body>
+  if(!nom || !service || !proof){
+    alert("Veuillez remplir tous les champs et joindre la preuve de paiement.");
+    return;
+  }
 
-<header>
-    <h1>Babadesign Services</h1>
-    <p>Chwazi sèvis ou vle, ranpli enfòmasyon epi fè depo w.</p>
-</header>
+  const message =
+    "Bonjour Babadesign Services,%0A%0A" +
+    "Nom : " + nom + "%0A" +
+    "Service / Formation : " + service + "%0A%0A" +
+    "Je vous envoie la preuve de paiement en pièce jointe.";
 
-<main>
-    <form id="designForm">
-        <label>Non ou:</label>
-        <input type="text" id="name" placeholder="Antre non ou" required>
+  const phone = "509XXXXXXXX"; // Remplace par ton numéro
+  const url = "https://wa.me/" + phone + "?text=" + message;
 
-        <label>Imèl (opsyonèl):</label>
-        <input type="text" id="email" placeholder="Antre imèl ou">
-
-        <label>Sèvis ou vle pran:</label>
-        <select id="service" required>
-            <option value="">Chwazi yon sèvis</option>
-            <option value="Flyers" data-price="3250">Flyers – 3250 HTG</option>
-            <option value="Etikèt" data-price="6500">Etikèt – 6500 HTG</option>
-            <option value="Logo" data-price="13000">Logo – 13000 HTG</option>
-            <option value="Banner" data-price="4550">Banner – 4550 HTG</option>
-            <option value="Certificat" data-price="650">Certificat – 650 HTG</option>
-            <option value="Badge" data-price="1040">Badge – 1040 HTG</option>
-            <option value="Website" data-price="104000">Website – 104000 HTG</option>
-            <option value="Calendrier" data-price="1950">Calendrier – 1950 HTG</option>
-            <option value="Cover Design" data-price="3900">Cover Design – 3900 HTG</option>
-  </select>
-
-        <label>Kontni oswa tèks pou pwojè a:</label>
-        <textarea id="details" rows="4" placeholder="Antre detay pwojè a" required></textarea>
-
-        <label>Koulè oswa style preferans:</label>
-        <input type="text" id="style" placeholder="Koulè oswa style">
-
-        <label>Kòd promo (si genyen):</label>
-        <input type="text" id="promo" placeholder="Babadesign01">
-
-        <div class="price-box">
-            Pri total: <span id="totalPrice">0 HTG</span>
-        </div>
-
-        <div class="info-box">
-            <p>Nimewo pou fè depo:</p>
-            <p>MonCash: +50948284190</p>
-            <p>NatCash: +50940052773</p>
-            <p>Upload foto tranzaksyon sou WhatsApp: +50940052773</p>
-        </div>
-
-        <button type="submit">Soumèt Demann</button>
-
-        <div class="confirmation" id="confirmationMessage">
-            Mèsi pou konfyans ou! Depo a nou resevwa li, travay la ap disponib nan 24–48h.
-        </div>
-    </form>
-</main>
-
-<!-- Modal pou konfime -->
-<div class="modal" id="confirmModal">
-    <div class="modal-content">
-        <h2>Konfimasyon Demann</h2>
-        <p id="modalMessage"></p>
-        <button id="confirmBtn">Voye sou WhatsApp</button>
-        <button id="cancelBtn">Anile</button>
-    </div>
-</div>
-
-<script>
-    const serviceSelect = document.getElementById('service');
-    const promoInput = document.getElementById('promo');
-    const totalPrice = document.getElementById('totalPrice');
-    const form = document.getElementById('designForm');
-    const confirmation = document.getElementById('confirmationMessage');
-    const modal = document.getElementById('confirmModal');
-    const modalMessage = document.getElementById('modalMessage');
-    const confirmBtn = document.getElementById('confirmBtn');
-    const cancelBtn = document.getElementById('cancelBtn');
-
-    function calculatePrice(){
-        let price = parseFloat(serviceSelect.selectedOptions[0]?.dataset.price || 0);
-        let promo = promoInput.value.trim();
-        if(promo === "Babadesign01"){ price *= 0.9; }
-        totalPrice.textContent = price.toFixed(0) + " HTG";
-      return price.toFixed(0);
-    }
-
-    serviceSelect.addEventListener('change', calculatePrice);
-    promoInput.addEventListener('input', calculatePrice);
-
-    form.addEventListener('submit', function(e){
-        e.preventDefault();
-        const name = document.getElementById('name').value;
-        const email = document.getElementById('email').value;
-        const service = serviceSelect.value;
-        const details = document.getElementById('details').value;
-        const style = document.getElementById('style').value;
-        const promo = promoInput.value.trim();
-        const price = calculatePrice();
-
-        let messageText = Nouvo demann Babadesign:\nNon: ${name}\n;
-        if(email) messageText += Imèl: ${email}\n;
-        messageText += Sèvis: ${service}\nKontni: ${details}\nStyle/Koulè: ${style}\n;
-        messageText += Kòd promo: ${promo}\nPri total: ${price} HTG\nTanpri voye foto tranzaksyon sou WhatsApp +50940052773;
-
-        modalMessage.textContent = messageText;
-        modal.style.display = 'flex';
-
-        confirmBtn.onclick = () => {
-            const whatsappNumber = "+50940052773";
-            const url = https://wa.me/${whatsappNumber}?text=${encodeURIComponent(messageText)};
-            window.open(url,'_blank');
-            modal.style.display = 'none';
-            confirmation.style.display = 'block';
-   form.reset();
-            totalPrice.textContent = "0 HTG";
-        };
-        cancelBtn.onclick = () => { modal.style.display = 'none'; };
-    });
-
-    window.onclick = function(event){
-        if(event.target === modal){ modal.style.display = "none"; }
-
+  window.open(url,"_blank");
 }
 </script>
+
 </body>
 </html>
+
 
